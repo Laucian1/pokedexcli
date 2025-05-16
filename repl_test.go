@@ -8,6 +8,14 @@ func TestCleanInput(t *testing.T) {
 		expected []string
 	}{
 		{
+			input:    "  ",
+			expected: []string{},
+		},
+		{
+			input:    " hello  ",
+			expected: []string{"hello"},
+		},
+		{
 			input:    " hello world ",
 			expected: []string{"hello", "world"},
 		},
@@ -25,7 +33,7 @@ func TestCleanInput(t *testing.T) {
 		actual := cleanInput(c.input)
 		expected := c.expected
 		if len(actual) != len(expected) {
-			t.Errorf("Expected %v, but got %v", expected, actual)
+			t.Errorf("lengths don't match: '%v' vs '%v'", actual, expected)
 		}
 		for i := range actual {
 			word := actual[i]
